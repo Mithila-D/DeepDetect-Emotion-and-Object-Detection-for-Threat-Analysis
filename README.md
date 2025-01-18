@@ -1,0 +1,2 @@
+# DeepDetect-Emotion-and-Object-Detection-for-Threat-Analysis
+This project enhances residential security using computer vision and deep learning. It integrates gesture recognition, emotion analysis, and object detection to monitor suspicious behavior and identify objects like people and vehicles in real-time. The system also includes emergency features like an alarm button and an emergency contacts page.
