@@ -1,0 +1,280 @@
+{% comment %} {% load static %} {% endcomment %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    {% load static %}
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/SignIn.css' %}"
+    />
+
+    <style>
+      body {
+        margin: 0;
+        margin-right: 20px;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to right, #2c3e50, #4ca1af);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        color: #fff;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
+        padding: 1rem 2rem;
+        background-color: rgba(0, 0, 0, 0.7);
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+      }
+
+      .nav button {
+        background-color: #3498db;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: 600;
+        margin-left: 2px;
+        margin-right: 30px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .nav button:hover {
+        background-color: #2980b9;
+      }
+
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+      }
+
+      .hamburger_bar {
+        width: 25px;
+        height: 3px;
+        background-color: #ecf0f1;
+        margin: 3px;
+        transition: all 0.3s;
+      }
+
+      .hamburger_menu {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        position: absolute;
+        top: 60px;
+        right: 20px;
+        background-color: rgba(0, 0, 0, 0.8);
+        border-radius: 8px;
+      }
+
+      .hamburger_menu p {
+        margin: 0;
+        color: #ecf0f1;
+        font-weight: 600;
+      }
+
+      .container {
+        text-align: center;
+        padding: 2rem;
+        width: 100%;
+        max-width: 400px;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      }
+
+      h2 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-shadow: 2px 2px 5px #000;
+        color: #ffffff;
+        margin-bottom: 1rem;
+        animation: fadeInDown 2s;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .form_container {
+        margin-top: 2rem;
+      }
+
+      label {
+        font-size: 1.1rem;
+        color: #4f4f51;
+        display: block;
+        text-align: left;
+        margin-bottom: 5px;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 6px;
+        background-color: #ecf0f1;
+        font-size: 1rem;
+        color: #3e3d3d;
+        margin-bottom: 1rem;
+      }
+
+      .submit {
+        width: 100%;
+        padding: 10px;
+        background-color: #1abc9c;
+        border: none;
+        border-radius: 6px;
+        color: #fff;
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .submit:hover {
+        background-color: #16a085;
+      }
+
+      p {
+        color: #ecf0f1;
+        font-size: 0.9rem;
+      }
+
+      p a {
+        color: #1abc9c;
+        font-weight: bold;
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+
+      p a:hover {
+        color: #16a085;
+      }
+
+      .footer {
+        margin-top: 3rem;
+        font-size: 1rem;
+        color: #95a5a6;
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          padding: 1.5rem;
+          width: 90%;
+        }
+        h2 {
+          font-size: 2rem;
+        }
+        .nav {
+          padding: 0.5rem 1rem;
+        }
+        .hamburger {
+          display: flex;
+        }
+        .nav button {
+          display: none;
+        }
+      }
+    </style>
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById("hamburger_menu");
+        menu.style.display = menu.style.display === "block" ? "none" : "block";
+      }
+    </script>
+  </head>
+  <body>
+    <div class="nav">
+      <button onclick="window.location.href='{% url 'signin' %}'">
+        Sign In
+      </button>
+      <button onclick="window.location.href='{% url 'signup' %}'">
+        Sign Up
+      </button>
+      <button
+        onclick="window.location.href='{% url 'index' %}'"
+        class="go-index-btn"
+      >
+        Home
+      </button>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger_bar"></div>
+        <div class="hamburger_bar"></div>
+        <div class="hamburger_bar"></div>
+      </div>
+      <div class="hamburger_menu" id="hamburger_menu">
+        <p class="hamburger_username">Project</p>
+        <a href="{% url 'index' %}">Home </a>
+
+        <a href="{% url 'signin' %}">sign in</a>
+
+        <a href="{% url 'signup' %}">sign up</a>
+      </div>
+    </div>
+
+    <br /><br /><br />
+    <div class="container">
+      <h2>Sign In</h2>
+
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="form_container">
+        <form method="POST" action="{% url 'signin' %}">
+          {% csrf_token %}
+          <div>
+            <label for="UserName">UserName:</label>
+            <input type="text" id="UserName" name="UserName" required />
+          </div>
+          <div>
+            <label for="Password">Password:</label>
+            <input type="Password" id="Password" name="Password" required />
+          </div>
+          <div>
+            <button type="submit" class="submit">Sign In</button>
+          </div>
+        </form>
+      </div>
+      <p>
+        UserName: aaa<br />
+        Password: aaa111*
+      </p>
+      <p>
+        Don't have an account?
+        <a href="{% url 'signup' %}">Sign up here</a>
+      </p>
+    </div>
+
+    <div class="footer">Residence Security Camera</div>
+  </body>
+</html>

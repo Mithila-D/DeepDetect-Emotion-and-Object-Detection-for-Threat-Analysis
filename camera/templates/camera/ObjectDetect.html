@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Object Detection</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f4f6f9;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      .navbar {
+        background-color: #34495e;
+        padding: 20px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+      }
+
+      .navbar .logo {
+        color: #fff;
+        font-size: 22px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .navbar a {
+        color: #fff;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 18px;
+        text-transform: uppercase;
+        font-weight: bold;
+        transition: color 0.3s ease;
+      }
+
+      .navbar a:hover {
+        color: #3498db;
+      }
+
+      .navbar .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 10px;
+        border: none;
+        background: transparent;
+      }
+
+      .navbar .hamburger_bar {
+        width: 25px;
+        height: 3px;
+        background-color: #fff;
+        margin: 4px 0;
+        transition: all 0.3s ease;
+      }
+
+      .navbar .hamburger_menu {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .navbar .hamburger_menu a {
+        margin: 10px 20px;
+      }
+
+      .container {
+        margin-top: 80px;
+        max-width: 1200px;
+        width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 30px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .page-title {
+        text-align: center;
+        font-size: 2.5rem;
+        color: #34495e;
+        margin-bottom: 20px;
+        font-weight: 600;
+      }
+
+      .video-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
+      }
+
+      #video-feed {
+        width: 80%;
+        max-width: 1000px;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      }
+
+      .content {
+        font-size: 1.125rem;
+        color: #555;
+        line-height: 1.8;
+        text-align: justify;
+        padding: 0 20px;
+      }
+
+      .content p {
+        margin-bottom: 20px;
+      }
+
+      .content a {
+        color: #3498db;
+        text-decoration: none;
+      }
+
+      .content a:hover {
+        text-decoration: underline;
+      }
+
+      @media screen and (max-width: 768px) {
+        .navbar {
+          padding: 15px;
+          flex-direction: column;
+          text-align: center;
+        }
+
+        .navbar a {
+          margin: 10px 0;
+        }
+
+        .navbar .hamburger {
+          display: flex;
+        }
+
+        .navbar .hamburger_menu {
+          display: none;
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+
+        .navbar.active .hamburger_menu {
+          display: flex;
+        }
+
+        .page-title {
+          font-size: 2rem;
+        }
+
+        .video-container {
+          margin-bottom: 20px;
+        }
+
+        #video-feed {
+          width: 100%;
+          max-width: 600px;
+        }
+
+        .content {
+          font-size: 1rem;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .navbar a {
+          font-size: 14px;
+          margin: 8px 0;
+        }
+
+        .page-title {
+          font-size: 1.75rem;
+        }
+
+        .content {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+    <script>
+      function toggleMenu() {
+        const menu = document.getElementById("hamburger_menu");
+        const navbar = document.querySelector(".navbar");
+        navbar.classList.toggle("active");
+      }
+    </script>
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="logo">Security Feed</div>
+      <div class="hamburger" onclick="toggleMenu()">
+        <div class="hamburger_bar"></div>
+        <div class="hamburger_bar"></div>
+        <div class="hamburger_bar"></div>
+      </div>
+      <div class="hamburger_menu" id="hamburger_menu">
+        <a href="{% url 'signin' %}">Sign In</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+      </div>
+    </div>
+
+    <div class="container">
+      <h1 class="page-title">Object Detection via yolo</h1>
+      <div class="video-container">
+        <img
+          id="video-feed"
+          src="{% url 'video_feed' %}"
+          alt="Object Detection Video"
+        />
+      </div>
+      <div class="content">
+        <p>
+          <b> Title:</b>
+          Object detection using deep learning frameworks like YOLO or Mask
+          R-CNN
+          <br />
+          <b> Objective:</b>
+          To be able to identify objects like people , vehicle (car,
+          bus,truck),etc. To be able to detect objects for further process be
+          image recognition,classification,etc. Thus, help in making recidence
+          more secure .
+          <br />
+          <b> YOLO:</b>
+          YOLO (You Only Look Once) we used Dataset – coco which has more than
+          80 class labels like cat,car,dog,people ,etc.
+        </p>
+        <p>
+          <b>Conclusion : </b>Thus , we are able to successfully detect object
+          and study its parameters.
+        </p>
+        <p>
+          Go back to <a href="{% url 'dashboard' %}">Dashboard </a> page or the
+          <a href=" {% url 'analyze_emotions' %} ">Emotion Analysis </a> page.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

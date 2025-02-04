@@ -1,0 +1,168 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Residence Security Camera Feed</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        background-color: #f3f4f6;
+        color: #333;
+      }
+
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: #34495e;
+        color: #fff;
+      }
+
+      .navbar h1 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: #ecf0f1;
+      }
+
+      .navbar .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #ecf0f1;
+        font-weight: 600;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #1abc9c;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 3rem 1.5rem;
+      }
+
+      .container h2 {
+        font-size: 2.5rem;
+        color: #2c3e50;
+        margin-bottom: 1rem;
+      }
+
+      .container p {
+        font-size: 1.1rem;
+        max-width: 600px;
+        color: #666;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+      }
+
+      .btn-primary {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #1abc9c;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+        text-decoration: none;
+      }
+
+      .btn-primary:hover {
+        background-color: #16a085;
+      }
+
+      .btn-primary:active {
+        transform: scale(0.97);
+      }
+
+      @media (max-width: 768px) {
+        .navbar {
+          padding: 1rem;
+        }
+        .container h2 {
+          font-size: 2rem;
+        }
+        .container p {
+          font-size: 1rem;
+        }
+        .btn-primary {
+          font-size: 0.9rem;
+          padding: 0.65rem 1.5rem;
+        }
+      }
+      .nm {
+        color: aquamarine;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+      }
+      .heading {
+        font-size: 3rem;
+        font-weight: bold;
+        color: #34495e;
+        background: linear-gradient(135deg, #1abc9c, #3498db);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+        margin-bottom: 1.5rem;
+        position: relative;
+        transition: transform 0.3s ease;
+      }
+
+      .heading::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -8px;
+        height: 4px;
+        width: 100%;
+        background: linear-gradient(90deg, #1abc9c, #3498db);
+        border-radius: 5px;
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.4s ease;
+      }
+
+      .heading:hover::after {
+        transform: scaleX(1);
+        transform-origin: left;
+      }
+
+      .heading:hover {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="navbar">
+      <h1>Residence Security</h1>
+      <div class="nav-links">
+        <a href="{% url 'signin' %}">Sign In</a>
+        <a href="{% url 'signup' %}">Sign Up</a>
+      </div>
+    </div>
+    <div class="container">
+      <h2 class="heading">Residence Security Camera</h2>
+      <div>
+        This is Residence Security Camera Project with computer vision and deep
+        learning!
+        <div class="nm">by- Mithila Deshpande</div>
+      </div>
+      <br /><br />
+
+      <a href="{% url 'signin' %}" class="btn-primary">Sign In</a>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        background-color: #f1f3f6;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 3rem;
+        color: #2c3e50;
+
+        font-weight: 700;
+      }
+      .choose-me {
+        color: #6b8a96;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+      }
+      .choose-me a {
+        color: #6b8a96;
+        font-size: 1.25rem;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .buttons-container {
+        display: flex;
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        outline: none;
+      }
+
+      .button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      }
+
+      .button:focus {
+        outline: none;
+      }
+
+      .pink {
+        background-color: #e91e63;
+        color: white;
+      }
+
+      .pink:hover {
+        background-color: #d81b60;
+      }
+
+      .green {
+        background-color: #03e01c;
+        color: white;
+      }
+
+      .green:hover {
+        background-color: #04c447;
+      }
+
+      .blue {
+        background-color: #3498db;
+        color: white;
+      }
+
+      .blue:hover {
+        background-color: #2980b9;
+      }
+
+      @media screen and (max-width: 768px) {
+        h1 {
+          font-size: 2.5rem;
+        }
+
+        .button {
+          font-size: 1rem;
+          padding: 12px 25px;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        h1 {
+          font-size: 2rem;
+        }
+
+        .button {
+          font-size: 0.9rem;
+          padding: 10px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Dashboard</h1>
+    <h4 class="choose-me">Choose<a herf="{% url 'index' %}">:</a></h4>
+    <br />
+    <div class="buttons-container">
+      <button
+        class="button pink"
+        onclick="window.location.href='{% url 'analyze_emotions' %}'"
+      >
+        Emotions Analyze
+      </button>
+      <button
+        class="button blue"
+        onclick="window.location.href='{% url 'object_detect' %}'"
+      >
+        Object Detection
+      </button>
+      <button
+        class="button green"
+        onclick="window.location.href='{% url 'buttons' %}'"
+      >
+        Buttons
+      </button>
+    </div>
+  </body>
+</html>

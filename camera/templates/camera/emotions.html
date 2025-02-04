@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Emotions Detect</title>
+    <link rel="stylesheet" href="{% static 'css/emotions.css' %}" />
+  </head>
+  <body>
+    <h1>Emotion Analysis Results</h1>
+
+    <div id="emotion-result">
+      <img src="{{ image_url }}" alt="Emotion Image" />
+
+      <p><strong>Angry:</strong> {{ emotions.angry|floatformat:2 }}%</p>
+      <p><strong>Disgust:</strong> {{ emotions.disgust|floatformat:2 }}%</p>
+      <p><strong>Fear:</strong> {{ emotions.fear|floatformat:2 }}%</p>
+      <p><strong>Happy:</strong> {{ emotions.happy|floatformat:2 }}%</p>
+      <p><strong>Sad:</strong> {{ emotions.sad|floatformat:2 }}%</p>
+      <p><strong>Surprise:</strong> {{ emotions.surprise|floatformat:2 }}%</p>
+      <p><strong>Neutral:</strong> {{ emotions.neutral|floatformat:2 }}%</p>
+    </div>
+    <div class="info">
+      <pre>
+  <b>Title:</b> Gesture recognition using computer vision techniques.<br>
+  <b>Objectives:</b>
+    Emotion Recognition: apply emotion analysis to identify and categorize facial expressions (e.g., fear,
+    happiness, anger, surprise) using the DeepFace library.
+    Emotion and Gesture Recognition: detect a range of emotions (e.g., fear, anger, surprise) and specific
+    gestures, providing an analysis of individuals' states.
+    Suspicious Behavior Detection: identifying and analyzing emotions and gestures to flag potential
+    suspicious behavior among individuals captured by the security camera.
+    
+    <b>Theory:</b>
+    I. Face Detection: The system uses algorithms ( DeepFace uses Haar cascades as part of its face
+    detection process ) to locate and isolate faces within the captured images.
+    II. Feature Extraction: Once faces are detected, key features of the face, such as the position of
+    the eyes, mouth, and eyebrows, are analyzed.
+    III. Gesture Recognition Models: Pre-trained machine learning models analyze the extracted
+    features to identify specific gestures, such as smile, shocked ,etc. face.
+    IV. Classification: The recognized gestures are classified into categories (e.g., happy, sad, fear,
+    angry,etc. ) based on patterns learned during training.
+    V. Output Analysis: The system provides feedback or alerts based on recognized gestures that
+    may indicate suspicious behavior.
+    
+    <b>Decisions Taken:</b>
+    1) I took face with feared expression as one of the indicators of identifying suspicious behavior. Fear may
+    not necessarily mean suspicious behavior but,
+    For example:
+     A person might be scared because they're in a new place or feel unsafe.
+     Or, they could be acting suspiciously, and their fear is a sign of hiding something.
+     Or, something is wrong with them or did wrong
+    So, using fear as a possible indicator of suspicious behavior can be helpful .
+    If a person is feared , from above example we get , in all cases an attention is needed.
+    2) Used DeepFace model
+    Why DeepFace?
+    deepface simplifies deep learning models for face-related tasks, like identifying emotions, age, gender, or
+    facial attributes,etc.
+    
+    For a residential security camera project, recognizing gestures can enhance the system’s capabilities by
+    analyzing the emotions or states of individuals, such as if they're happy, angry, surprised, or sad, which
+    might help detect unusual behavior or emotional states.
+    Emotion Detection: It analyzes facial expressions and provides the dominant emotion, which can
+    indicate mood or gestures like happiness or anger.
+    Facial Attribute Detection: DeepFace can detect age, gender, and facial attributes, which might be
+    useful for analyzing visitors' profiles in security systems.
+    Emotions detected:
+    I. Angry
+    II. Disgust
+    III. Fear
+    IV. Happy
+    V. Sad
+    VI. Surprise
+    VII. Neutral
+    <b>Conclusion</b>
+    In this project, I developed a residential security camera system that detects emotions and gestures to
+    identify suspicious behavior. By using OpenCV and DeepFace, the system can analyze multiple faces in
+    real-time and recognize various emotions like fear, happiness, and anger. This allows for better
+    monitoring of my surroundings and helps in detecting potential threats.
+</pre>
+      <p>
+        Go back to <a href="{% url 'dashboard' %}">Dashboard </a> page or the
+        <a href=" {% url 'object_detect' %} ">Detect obj</a> : page.
+      </p>
+    </div>
+    <script>
+      var angry = parseFloat("{{ emotions.angry }}");
+      var disgust = parseFloat("{{ emotions.disgust }}");
+      var fear = parseFloat("{{ emotions.fear }}");
+      var sad = parseFloat("{{ emotions.sad }}");
+
+      if (angry + disgust + fear + sad > 70) {
+        alert("Alert: High levels of negative emotions detected!");
+      }
+    </script>
+  </body>
+</html>
